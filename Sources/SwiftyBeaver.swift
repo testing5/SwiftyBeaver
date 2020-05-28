@@ -68,12 +68,8 @@ open class SwiftyBeaver {
             // > Thread.isMainThread
             return ""
         #else
-            if Thread.isMainThread {
-                return ""
-            } else {
                 let name = __dispatch_queue_get_label(nil)
                 return String(cString: name, encoding: .utf8) ?? Thread.current.description
-            }
         #endif
     }
 
