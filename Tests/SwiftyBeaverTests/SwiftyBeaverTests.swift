@@ -342,15 +342,15 @@ class SwiftyBeaverTests: XCTestCase {
 
         //main thread
         log.verbose("Hi")
-        XCTAssertEqual(mock.didSendToThread, "")
+        XCTAssertEqual(mock.didSendToThread, "com.apple.main-thread")
         log.debug("Hi")
-        XCTAssertEqual(mock.didSendToThread, "")
+        XCTAssertEqual(mock.didSendToThread, "com.apple.main-thread")
         log.info("Hi")
-        XCTAssertEqual(mock.didSendToThread, "")
+        XCTAssertEqual(mock.didSendToThread, "com.apple.main-thread")
         log.warning("Hi")
-        XCTAssertEqual(mock.didSendToThread, "")
+        XCTAssertEqual(mock.didSendToThread, "com.apple.main-thread")
         log.error("Hi")
-        XCTAssertEqual(mock.didSendToThread, "")
+        XCTAssertEqual(mock.didSendToThread, "com.apple.main-thread")
 
         var expectation = XCTestExpectation(description: "thread check")
 
