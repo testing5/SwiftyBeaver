@@ -353,9 +353,9 @@ open class BaseDestination: Hashable, Equatable {
         let hours = Int(interval) / 3600
         let minutes = Int(interval / 60) - Int(hours * 60)
         let seconds = Int(interval) - (Int(interval / 60) * 60)
-        let milliseconds = Int(interval.truncatingRemainder(dividingBy: 1) * 1000)
+        let milliseconds = Int(interval.truncatingRemainder(dividingBy: 1) * 1000000)
 
-        return String(format: "%0.2d:%0.2d:%0.2d.%03d", arguments: [hours, minutes, seconds, milliseconds])
+        return String(format: "%0.2d:%0.2d:%0.2d.%06d", arguments: [hours, minutes, seconds, milliseconds])
     }
 
     /// returns the json-encoded string value
