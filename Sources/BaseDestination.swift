@@ -190,6 +190,8 @@ open class BaseDestination: Hashable, Equatable {
             switch formatChar {
             case "A": //custom time format
                 text += paddedString(nslogFormatTime(), padding) + remainingPhrase
+            case "P": //custom time format
+                text += paddedString(processName(), padding) + remainingPhrase
             case "I":  // ignore
                 text += remainingPhrase
             case "L":
@@ -246,6 +248,11 @@ open class BaseDestination: Hashable, Equatable {
         }
         // right trim only
         return text.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
+    }
+    
+    ///returns the proces name
+    func processName() -> String{
+        return ProcessInfo.processInfo.processName
     }
 
     /// returns the log payload as optional JSON string

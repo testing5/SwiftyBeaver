@@ -219,7 +219,7 @@ class SwiftyBeaverTests: XCTestCase {
 
         // add console
         let console = ConsoleDestination()
-        console.format = "$U: $M"
+        console.format = "$U:[$P] $M"
         XCTAssertTrue(log.addDestination(console))
 
         // add file
