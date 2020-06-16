@@ -188,6 +188,8 @@ open class BaseDestination: Hashable, Equatable {
             let remainingPhrase = phrase[rangeAfterFormatChar]
 
             switch formatChar {
+            case "A": //custom time format
+                text += paddedString(nslogFormatTime(), padding) + remainingPhrase
             case "I":  // ignore
                 text += remainingPhrase
             case "L":
@@ -346,6 +348,22 @@ open class BaseDestination: Hashable, Equatable {
         return dateStr
     }
 
+    ///
+    func nslogFormatTime() -> String {
+        let date = Date()
+        let interval = date.timeIntervalSince(startDate)
+        let milliseconds = Int(interval.truncatingRemainder(dividingBy: 1) * 1000000)
+        let format = "YYYY-MM-dd HH:mm:ssZ"
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = format
+        let formatteString = formatter.string(from: date)
+        let components = formatteString.components(separatedBy: "+")
+
+        let result = String(format: "%@.%06d+%@", components[0], milliseconds, components[1])
+        return result
+    }
+    
     /// returns a uptime string
     func uptime() -> String {
         let interval = Date().timeIntervalSince(startDate)
