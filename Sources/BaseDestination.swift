@@ -365,9 +365,11 @@ open class BaseDestination: Hashable, Equatable {
         formatter.timeZone = TimeZone.current
         formatter.dateFormat = format
         let formatteString = formatter.string(from: date)
-        let components = formatteString.components(separatedBy: "+")
 
-        let result = String(format: "%@.%06d+%@", components[0], milliseconds, components[1])
+        let front = String(formatteString.dropLast(5))
+        let end = String(formatteString.suffix(5))
+        
+        let result = String(format: "%@.%06d+%@", front, milliseconds, end)
         return result
     }
     
